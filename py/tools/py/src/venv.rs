@@ -9,7 +9,7 @@ use std::{
     env::current_dir,
     fs::{self, File},
     io::{BufRead, BufReader, BufWriter, Write},
-    os::unix::fs::{MetadataExt, PermissionsExt},
+    os::unix::fs::PermissionsExt,
     path::{Path, PathBuf},
 };
 use std::{ffi::OsStr, os::unix::fs as unix_fs};
@@ -272,7 +272,7 @@ pub fn create_empty_venv<'a>(
     // If we've been provided with a venv shim, that gets put in place as
     // bin/python. Otherwise we copy the Python here
     match venv_shim {
-        Some(ref shim_path) => {
+        Some(shim_path) => {
             copy(&shim_path.to_path_buf(), &venv.python_bin)
                 .wrap_err("Unable to create interpreter shim")?;
 
@@ -556,10 +556,10 @@ pub fn populate_venv_with_copies(
 /// site-packages trees (and potentially other import roots) onto the path.
 
 pub fn populate_venv_with_pth(
-    venv: Virtualenv,
-    pth_file: PthFile,
-    bin_dir: PathBuf,
-    collision_strategy: CollisionResolutionStrategy,
+    _venv: Virtualenv,
+    _pth_file: PthFile,
+    _bin_dir: PathBuf,
+    _collision_strategy: CollisionResolutionStrategy,
 ) -> miette::Result<()> {
     // Assumes that `create_empty_venv` has already been called to build out the virtualenv.
 
