@@ -104,6 +104,7 @@ bzl_library(
     srcs = ["py_pex_binary.bzl"],
     deps = [
         ":py_semantics",
+        ":transitions",
         "//py/private/toolchain:types",
         "@rules_python//python:defs_bzl",
     ],

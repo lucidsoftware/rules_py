@@ -21,6 +21,7 @@ py_pex_binary(
 load("@rules_python//python:defs.bzl", "PyInfo")
 load("//py/private:py_semantics.bzl", _py_semantics = "semantics")
 load("//py/private/toolchain:types.bzl", "PY_TOOLCHAIN")
+load(":transitions.bzl", "python_version_transition")
 
 def _runfiles_path(file, workspace):
     if file.short_path.startswith("../"):
@@ -139,10 +140,13 @@ _attrs = dict({
     "python_interpreter_constraints": attr.string_list(
         default = ["CPython=={major}.{minor}.*"],
         doc = """\
-Python interpreter versions this PEX binary is compatible with. A list of semver strings. 
-The placeholder strings `{major}`, `{minor}`, `{patch}` can be used for gathering version 
+Python interpreter versions this PEX binary is compatible with. A list of semver strings.
+The placeholder strings `{major}`, `{minor}`, `{patch}` can be used for gathering version
 information from the hermetic python toolchain.
 """,
+    ),
+    "python_version": attr.string(
+        doc = """Whether to use a specific Python version for this PEX binary.""",
     ),
     # NB: this is read by _resolve_toolchain in py_semantics.
     "_interpreter_version_flag": attr.label(
@@ -159,4 +163,5 @@ py_pex_binary = rule(
         PY_TOOLCHAIN,
     ],
     executable = True,
+    cfg = python_version_transition,
 )
