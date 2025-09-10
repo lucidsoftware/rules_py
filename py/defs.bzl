@@ -98,6 +98,7 @@ def _py_binary_or_test(name, rule, srcs, main, data = [], deps = [], resolutions
         imports = kwargs.get("imports"),
         resolutions = resolutions,
         package_collisions = package_collisions,
+        python_version = kwargs.get("python_version", ""),
         tags = ["manual"],
         testonly = kwargs.get("testonly", False),
         target_compatible_with = kwargs.get("target_compatible_with", []),
