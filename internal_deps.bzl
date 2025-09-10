@@ -101,8 +101,15 @@ def rules_py_internal_deps():
 
     http_archive(
         name = "rules_rust",
-        integrity = "sha256-heIBNyerJvsiq9/+SyrAwnotW2KWFnumPY9uExQPUfk=",
-        urls = ["https://github.com/bazelbuild/rules_rust/releases/download/0.53.0/rules_rust-v0.53.0.tar.gz"],
+        integrity = "sha256-2GH766nwQzOgrmnkSO6D1pF/JC3bt/41xo/CEqarpUY=",
+        urls = ["https://github.com/bazelbuild/rules_rust/releases/download/0.64.0/rules_rust-0.64.0.tar.gz"],
+    )
+
+    http_archive(
+        name = "rules_cc",
+        sha256 = "8dcd63392f0bb48adf74f413a9f39ba0fedcb8f99bf085a3b450f06d171dbb6d",
+        strip_prefix = "rules_cc-0.2.4",
+        url = "https://github.com/bazelbuild/rules_cc/releases/download/0.2.4/rules_cc-0.2.4.tar.gz",
     )
 
     http_file(
