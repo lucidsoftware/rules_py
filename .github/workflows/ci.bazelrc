@@ -4,6 +4,9 @@
 # Debug where options came from
 build --announce_rc
 
+# Set Rust LTO settings in a way that plays nicely with rules_rust
+common --@rules_rust//rust/settings:lto=fat
+
 # This directory is configured in GitHub actions to be persisted between runs.
 build --disk_cache=~/.cache/bazel
 build --repository_cache=~/.cache/bazel-repo
