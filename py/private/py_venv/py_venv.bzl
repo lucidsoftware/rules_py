@@ -66,7 +66,7 @@ def _py_venv_base_impl(ctx):
     pth_lines.set_param_file_format("multiline")
     pth_lines.add_all(imports_depset)
 
-    site_packages_pth_file = ctx.actions.declare_file("{}.pth".format(ctx.attr.name))
+    site_packages_pth_file = ctx.actions.declare_file("{}-static.pth".format(ctx.attr.name))
     ctx.actions.write(
         output = site_packages_pth_file,
         content = pth_lines,
